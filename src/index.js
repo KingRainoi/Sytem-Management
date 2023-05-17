@@ -8,18 +8,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginRegisterForm from './screens/LoginRegisterForm.tsx';
 import AdministratorPanel from './screens/AdministratorPanel.tsx';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <LoginRegisterForm/>
       <Routes>
+        <Route path="/" element={<LoginRegisterForm />} />
         <Route path="/login-register-form" element={<LoginRegisterForm />} />
         <Route path="/administrator-panel" element={<AdministratorPanel />} />
-      </Routes>  
+      </Routes>
     </Router>
-    
   </React.StrictMode>
 );
 

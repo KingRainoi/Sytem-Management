@@ -36,8 +36,13 @@ function NavBar() {
                 hideIn="xs"
                 variant="highlight-rounded"
             >
-            
-          </Navbar.Content>
+            <Navbar.Link href="#">Features</Navbar.Link>
+            <Navbar.Link isActive href="#">
+              Customers
+            </Navbar.Link>
+            <Navbar.Link href="#">Pricing</Navbar.Link>
+            <Navbar.Link href="#">Company</Navbar.Link>
+            </Navbar.Content>
           <Navbar.Content
             enableCursorHighlight
             activeColor="secondary"

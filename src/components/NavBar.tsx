@@ -1,10 +1,19 @@
-import React from 'react';
-import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
+import React, { useState } from 'react';
+import { Navbar, Text, Avatar, Dropdown } from "@nextui-org/react";
+import { Link } from 'react-router-dom';
 import Logo from '../resources/img/Logo';
+import { NavLink, useLocation } from 'react-router-dom';
+
+function isActiveRoute(route, location) {
+  return location.pathname === route;
+}
 
 function NavBar() {
 
-    const collapseItems = [
+  const [sales,SetSales] = useState(true);
+  const [products,SetProducts] = useState(false);
+  const [services,SetServices] = useState(false);
+  const collapseItems = [
         "Profile",
         "Dashboard",
         "Activity",
@@ -15,9 +24,9 @@ function NavBar() {
         "Team Settings",
         "Help & Feedback",
         "Log Out",
-    ];
+  ];
 
-    return (
+  return (
         <Navbar isBordered variant="sticky">
             <Navbar.Brand
                 css={{
@@ -36,12 +45,9 @@ function NavBar() {
                 hideIn="xs"
                 variant="highlight-rounded"
             >
-            <Navbar.Link href="#">Features</Navbar.Link>
-            <Navbar.Link isActive href="#">
-              Customers
-            </Navbar.Link>
-            <Navbar.Link href="#">Pricing</Navbar.Link>
-            <Navbar.Link href="#">Company</Navbar.Link>
+            <Navbar.Link isActive={sales} href="#">Sales</Navbar.Link>
+            <Navbar.Link isActive={products}  href="#">Products</Navbar.Link>
+            <Navbar.Link isActive={services} href="#">Services</Navbar.Link>
             </Navbar.Content>
           <Navbar.Content
             enableCursorHighlight
@@ -92,28 +98,6 @@ function NavBar() {
                 </Dropdown.Menu>
             </Dropdown>
           </Navbar.Content>
-          <Navbar.Collapse>
-          {collapseItems.map((item, index) => (
-            <Navbar.CollapseItem
-              key={item}
-              activeColor="secondary"
-              css={{
-                color: index === collapseItems.length - 1 ? "$error" : "",
-              }}
-              isActive={index === 2}
-            >
-              <Link
-                color="inherit"
-                css={{
-                  minWidth: "100%",
-                }}
-                href="#"
-              >
-                {item}
-              </Link>
-            </Navbar.CollapseItem>
-          ))}
-        </Navbar.Collapse>
         </Navbar>
     )
 };

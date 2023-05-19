@@ -7,7 +7,7 @@ import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, deleteDoc, doc } fr
 import { getUsers } from '../resources/info/FirebaseUsers.ts';
 import {db} from '../firebase.ts';
 
-function AdministratorPanel() {
+function AdministratorSalesPanel() {
 
     const [ users, setUsers ] = useState<QueryDocumentSnapshot<DocumentData>[] | []>([]);
   
@@ -88,4 +88,4 @@ function AdministratorPanel() {
     )
 };
 
-export default AdministratorPanel;
+export default AdministratorSalesPanel;

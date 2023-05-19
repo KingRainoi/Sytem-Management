@@ -6,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { NextUIProvider } from '@nextui-org/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginRegisterForm from './screens/LoginRegisterForm.tsx';
-import AdministratorPanel from './screens/AdministratorPanel.tsx';
+import AdministratorSalesPanel from './screens/AdministratorSalesPanel.tsx';
+import AdministratorProductsPanel from './screens/AdministratorProductsPanel.tsx';
+import AddProduct from './screens/AddProduct.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +17,9 @@ root.render(
       <Routes>
         <Route path="/" element={<LoginRegisterForm />} />
         <Route path="/login-register-form" element={<LoginRegisterForm />} />
-        <Route path="/administrator-panel" element={<AdministratorPanel />} />
+        <Route path="/sales" element={<AdministratorSalesPanel />} />
+        <Route path="/products" element={<AdministratorProductsPanel />} />
+        <Route path="/products/add" element={<AddProduct />} />
       </Routes>
     </Router>
   </React.StrictMode>

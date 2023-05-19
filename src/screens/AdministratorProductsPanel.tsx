@@ -19,9 +19,9 @@ function AdministratorProductsPanel() {
                 Users list
               </Typography>
               <NavLink 
-                to={`/create-user`} 
+                to={`/products/add`} 
                 className="btn btn-info mx-2"
-              >Register sale</NavLink>
+              >Add product</NavLink>
               <Divider color="black" />
             </Grid>
           </Grid>
@@ -34,9 +34,9 @@ function AdministratorProductsPanel() {
                     <TableRow>
                       <TableCell>ID</TableCell>
                       <TableCell align="right">Name</TableCell>
-                      <TableCell align="right">Email</TableCell>
-                      <TableCell align="right" >Password</TableCell>
-                      <TableCell align="right">Actions</TableCell>
+                      <TableCell align="right">Sale price</TableCell>
+                      <TableCell align="right" >Purchase price</TableCell>
+                      <TableCell align="right">Stock</TableCell>
                     </TableRow>
                   </TableHead>
                  

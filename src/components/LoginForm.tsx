@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { auth } from '../firebase.ts';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate} from 'react-router-dom';
-import AdministratorPanel from '../screens/AdministratorPanel.tsx';
+import AdministratorSalesPanel from '../screens/AdministratorSalesPanel.tsx';
 
 function LoginForm() {
 
@@ -18,7 +18,7 @@ function LoginForm() {
         try {
             await signInWithEmailAndPassword(auth,email, password);
             // Inicio de sesión exitoso
-            navigate('/administrator-panel', { replace: true });
+            navigate('/sales', { replace: true });
         } catch (error) {
             // Manejo de errores
             setLogged(false);

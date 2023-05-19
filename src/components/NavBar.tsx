@@ -24,7 +24,7 @@ function NavBar() {
         "Team Settings",
         "Help & Feedback",
         "Log Out",
-  ];
+      ];
 
   return (
         <Navbar isBordered variant="sticky">
@@ -38,16 +38,22 @@ function NavBar() {
                 <Text b color="inherit" hideIn="xs">
                     Abyssal
                 </Text>
-            </Navbar.Brand>
+            </Navbar.Brand> 
             <Navbar.Content
                 enableCursorHighlight
                 activeColor="secondary"
                 hideIn="xs"
                 variant="highlight-rounded"
             >
-            <Navbar.Link isActive={sales} href="#">Sales</Navbar.Link>
-            <Navbar.Link isActive={products}  href="#">Products</Navbar.Link>
-            <Navbar.Link isActive={services} href="#">Services</Navbar.Link>
+            <Navbar.Link isActive={sales} href="#">
+              <Link to="/sales">Sales</Link>
+            </Navbar.Link>
+            <Navbar.Link isActive={products}  href="#">
+              <Link to="/products">Products</Link>
+            </Navbar.Link>
+            <Navbar.Link isActive={services} href="#">
+              <Link to="/services">Services</Link>
+            </Navbar.Link>   
             </Navbar.Content>
           <Navbar.Content
             enableCursorHighlight

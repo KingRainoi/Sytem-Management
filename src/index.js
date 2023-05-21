@@ -9,6 +9,9 @@ import LoginRegisterForm from './screens/LoginRegisterForm.tsx';
 import AdministratorSalesPanel from './screens/AdministratorSalesPanel.tsx';
 import AdministratorProductsPanel from './screens/AdministratorProductsPanel.tsx';
 import AddProduct from './screens/AddProduct.tsx';
+import EditProduct from './screens/EditProduct.tsx';
+import AdministratorServicesPanel from './screens/AdministratorServicesPanel.tsx';
+import AddService from './screens/AddService.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +23,9 @@ root.render(
         <Route path="/sales" element={<AdministratorSalesPanel />} />
         <Route path="/products" element={<AdministratorProductsPanel />} />
         <Route path="/products/add" element={<AddProduct />} />
+        <Route path="/products/:id" element={<EditProduct />} />
+        <Route path="/services" element={<AdministratorServicesPanel />} />
+        <Route path='/services/add' element={<AddService />} />'
       </Routes>
     </Router>
   </React.StrictMode>

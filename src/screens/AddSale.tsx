@@ -15,18 +15,9 @@ function AddSale() {
     const {items,date,total} = data;
 
     const save = async () => {
-        const result = await addSale(formSale);    
+        const result = await addSale(data);    
         result ? setSuccess("Sale registered") : setError("Error registering new sale");
     }
-
-    const handleSave = () => {
-        if (formSale.items.length >0) {
-            save();
-        } else {
-            setError("You must select at least one item");
-            return;
-        }
-    };
 
     const contextData : SaleContextData = {
         data,
@@ -39,8 +30,8 @@ function AddSale() {
                 <h1>Add Sale</h1>
                 { success && <Alert severity="success">{success}</Alert>}
                 { error && <Alert severity="error">{error}</Alert>}
-                
-                <Button variant="outlined" onClick={handleSave} >save</Button>
+                <ListBox />
+                <Button variant="outlined" onClick={save} >save</Button>
             </SaleContext.Provider>
         </div>
     );

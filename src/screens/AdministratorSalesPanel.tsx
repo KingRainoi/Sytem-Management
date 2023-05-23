@@ -4,21 +4,40 @@ import Button from '@mui/material/Button';
 import { Container, Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, deleteDoc, doc } from "firebase/firestore";
-import { getUsers } from '../resources/info/FirebaseUsers.ts';
 import {db} from '../firebase.ts';
+import { getSales } from '../resources/info/FirebaseSale.ts';
+import { confirmAlert } from 'react-confirm-alert';
+
+const deleteSale = async (id: string) => {
+  const saleRef = doc(db, "sales", id);
+  confirmAlert({
+    title: 'Confirmar eliminación',
+    message: '¿Estás seguro de que quieres eliminar esta venta?',
+    buttons: [
+      {
+        label: 'Sí',
+        onClick: () => deleteDoc(saleRef)
+      },
+      {
+        label: 'No',
+        onClick: () => {}
+      }
+    ]
+  });
+}
 
 function AdministratorSalesPanel() {
 
-    const [ users, setUsers ] = useState<QueryDocumentSnapshot<DocumentData>[] | []>([]);
+  const [sales,setSales] = useState<QueryDocumentSnapshot<DocumentData>[] | []>([]);
   
-    const getUsersData = async () => {
-    const fbUsers = await getUsers();
-        setUsers(fbUsers.docs); 
-    }
+  const getSalesData = async () => {
+    const fbSales = await getSales();
+    setSales(fbSales);
+  }
 
-    useEffect(() => {
-        getUsersData();
-    },[]);
+  useEffect(() => {
+    getSalesData();
+  },[])
 
     return (
       <Container>
@@ -28,10 +47,10 @@ function AdministratorSalesPanel() {
             <Grid item md={2} sm={1} xs={0}></Grid>
             <Grid item md={8} sm={10} xs={12}>
               <Typography variant="h4" color={"lightblue"}>
-                Users list
+                Sales list
               </Typography>
               <NavLink 
-                to={`/create-user`} 
+                to={`/sales/add`} 
                 className="btn btn-info mx-2"
               >Register sale</NavLink>
               <Divider color="black" />
@@ -45,27 +64,26 @@ function AdministratorSalesPanel() {
                   <TableHead>
                     <TableRow>
                       <TableCell>ID</TableCell>
-                      <TableCell align="right">Name</TableCell>
-                      <TableCell align="right">Email</TableCell>
-                      <TableCell align="right" >Password</TableCell>
-                      <TableCell align="right">Actions</TableCell>
+                      <TableCell align="right">Servicio o Producto</TableCell>
+                      <TableCell align="right">Fecha de venta</TableCell>
+                      <TableCell align="right" >Total</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {
-                      users.map((user: QueryDocumentSnapshot<DocumentData>) => {
+                      sales.map((sale: QueryDocumentSnapshot<DocumentData>) => {
 
-                        const { name, email,password } = user.data();
-                        const { id } = user;
+                        const { items, date,total } = sale.data();
+                        const { id } = sale;
                         return (
                           <TableRow
                             key={id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                           >
                           <TableCell>{id}</TableCell>
-                          <TableCell align="right"> {name}</TableCell>
-                          <TableCell align="right">{email}</TableCell>
-                          <TableCell align="right">{password}</TableCell>
+                          <TableCell align="right"> {items}</TableCell>
+                          <TableCell align="right">{date}</TableCell>
+                          <TableCell align="right">{total}</TableCell>
                           <TableCell >
                             <NavLink 
                               to={`/UsersDetailsScreen/${id}`} 
@@ -73,7 +91,7 @@ function AdministratorSalesPanel() {
                             >Edit</NavLink>
                           </TableCell>
                           <TableCell>
-                            <Button color="error" variant="contained" onClick={() => deleteUsuario(id)}>Delete</Button>
+                            <Button color="error" variant="contained" onClick={() => deleteSale(id)}>Delete</Button>
                           </TableCell>
                         </TableRow>);
                       })

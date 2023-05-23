@@ -13,7 +13,7 @@ const emptyService:Service  = {
     purchase_price: 0
 }
 
-function AddProduct() {
+function AddService() {
 
     const service = emptyService;
     const [formService, handleChange] = useForm(service);
@@ -44,6 +44,7 @@ function AddProduct() {
         
         if (formService.sale_price < formService.purchase_price) {
             save();
+            return;
         } else {
             setError("Sale price must be less than purchase price");
             return;
@@ -66,4 +67,4 @@ function AddProduct() {
     )
 };
 
-export default AddProduct;
+export default AddService;

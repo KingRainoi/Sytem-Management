@@ -12,6 +12,7 @@ import AddProduct from './screens/AddProduct.tsx';
 import EditProduct from './screens/EditProduct.tsx';
 import AdministratorServicesPanel from './screens/AdministratorServicesPanel.tsx';
 import AddService from './screens/AddService.tsx';
+import AddSale from './screens/AddSale.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path="/" element={<LoginRegisterForm />} />
         <Route path="/login-register-form" element={<LoginRegisterForm />} />
         <Route path="/sales" element={<AdministratorSalesPanel />} />
+        <Route path="/sales/add" element={<AddSale />} />
         <Route path="/products" element={<AdministratorProductsPanel />} />
         <Route path="/products/add" element={<AddProduct />} />
         <Route path="/products/:id" element={<EditProduct />} />

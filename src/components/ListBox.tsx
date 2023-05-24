@@ -10,7 +10,7 @@ function ListBox() {
     const {data: {items}, handleChange} = useContext<SaleContextData>(SaleContext);
     const [products, setProducts] = useState<QueryDocumentSnapshot<DocumentData>[] | []>([]);
 
-   const getProductsData = async () => {
+    const getProductsData = async () => {
         const fbProducts = await getProducts();
         setProducts(fbProducts.docs); 
     }
@@ -21,15 +21,15 @@ function ListBox() {
     
     return (
         <div>
-            <select onChange={undefined}>
+            <select className='items' value={items} onChange={handleChange}>
                 <option value="">Selecciona algúna opción</option>
                 {
-                    products.map((product:QueryDocumentSnapshot<DocumentData>,index)=> {
+                    products.map((product:QueryDocumentSnapshot<DocumentData>)=> {
                         const { name, purchase_price, stock } = product.data();
                         const { id } = product;
 
                         return(
-                            <option key={index} value={id}>{name} </option>
+                            <option value={id}>{name} </option>
                         )
                     })
                 }

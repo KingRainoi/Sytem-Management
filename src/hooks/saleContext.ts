@@ -7,7 +7,7 @@ export const saleInitialState: Sale = {
   total: 0,
   date: new Date(),
 }
-
+ 
 export interface SaleContextData {
   handleChange: ChangeEventHandler<HTMLSelectElement> | undefined
   data: Sale,

@@ -1,6 +1,6 @@
 import React,  { useState,Fragment }  from 'react';
 import {Sale} from '../resources/info/FirebaseSale.ts';
-import useForm from '../hooks/useForm.ts';
+import { useDropdown } from '../hooks/useDropdown.ts';
 import { Alert, Button, TextField } from '@mui/material';
 import {db} from '../firebase.ts';
 import {addSale} from '../resources/info/FirebaseSale.ts';
@@ -9,7 +9,7 @@ import { saleInitialState,SaleContextData,SaleContext } from '../hooks/saleConte
 
 function AddSale() {
 
-    const [data, handleChange] = useForm(saleInitialState);
+    const [data, handleChange] = useDropdown(saleInitialState);
     const [error,setError] = useState('');
     const [success,setSuccess] = useState('');
     const {items,date,total} = data;
@@ -23,6 +23,8 @@ function AddSale() {
         data,
         handleChange
     }
+
+
 
     return (
          <div>

@@ -9,13 +9,13 @@ export const saleInitialState: Sale = {
 }
 
 export interface SaleContextData {
-  handleChange: ChangeEventHandler<HTMLInputElement> | null,
+  handleChange: ChangeEventHandler<HTMLSelectElement> | undefined
   data: Sale,
 }
 
 const contextData: SaleContextData = {
   data: saleInitialState,
-  handleChange: null,
+  handleChange: undefined,
 }
 
 export const SaleContext = createContext<SaleContextData>(contextData);

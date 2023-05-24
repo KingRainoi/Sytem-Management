@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs,getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase.ts";
 
 const productsCollectionRef = collection(db, "products");
@@ -27,3 +27,4 @@ export const addProduct = async (product: any) => {
     }
     
 }
+

@@ -1,4 +1,3 @@
-import { Listbox } from '@headlessui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { saleInitialState,SaleContextData,SaleContext } from '../hooks/saleContext.ts';
 import {Sale} from '../resources/info/FirebaseSale.ts';
@@ -21,16 +20,21 @@ function ListBox() {
     },[]);
     
     return (
-       <Listbox>
-           <Listbox.Button>{products.name}</Listbox.Button>
-           <Listbox.Options onChange={handleChange}>
-               {products.map((product) => (
-               <Listbox.Option key={product.id} value={product}>
-                   {product.name}
-               </Listbox.Option>
-               ))}
-           </Listbox.Options>
-       </Listbox>
+        <div>
+            <select onChange={undefined}>
+                <option value="">Selecciona algúna opción</option>
+                {
+                    products.map((product:QueryDocumentSnapshot<DocumentData>,index)=> {
+                        const { name, purchase_price, stock } = product.data();
+                        const { id } = product;
+
+                        return(
+                            <option key={index} value={id}>{name} </option>
+                        )
+                    })
+                }
+            </select>
+        </div>
     );
 }
 

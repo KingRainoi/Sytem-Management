@@ -17,6 +17,20 @@ export const getProducts = async () => {
     return productsSnapshot;
 }
 
+export const getProductById = async (productId) => {
+  const productDocRef = doc(productsCollectionRef, productId);
+  const productSnapshot = await getDoc(productDocRef);
+
+  if (productSnapshot.exists()) {
+    // El documento existe en la base de datos
+    return productSnapshot;
+  } else {
+    // El documento no existe
+    return null;
+  }
+};
+
+
 export const addProduct = async (product: any) => {
     try {
         await addDoc(productsCollectionRef, product);

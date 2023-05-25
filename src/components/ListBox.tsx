@@ -4,8 +4,9 @@ import {Sale} from '../resources/info/FirebaseSale.ts';
 import { getProducts } from '../resources/info/FirebaseProducts.ts';
 import { getServices } from '../resources/info/FirebaseServices.ts';
 import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, deleteDoc, doc } from "firebase/firestore";
+import { ListItem, ListItemButton, ListItemText } from '@mui/material';
 
-function ListBox() {
+function ListBox({type:int}) {
     
     const {data: {items}, handleChange} = useContext<SaleContextData>(SaleContext);
     const [products, setProducts] = useState<QueryDocumentSnapshot<DocumentData>[] | []>([]);
@@ -18,6 +19,7 @@ function ListBox() {
     useEffect(() => {
       getProductsData();
     },[]);
+    console.log(items);
     
     return (
         <div>

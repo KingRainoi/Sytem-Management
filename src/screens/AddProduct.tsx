@@ -46,7 +46,7 @@ function AddProduct() {
             return;
         }
         
-        if (formProduct.sale_price < formProduct.purchase_price) {
+        if (formProduct.sale_price > formProduct.purchase_price) {
             save();
         } else {
             setError("Sale price must be less than purchase price");

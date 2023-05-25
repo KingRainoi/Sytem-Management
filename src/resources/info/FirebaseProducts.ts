@@ -18,6 +18,7 @@ export const getProducts = async () => {
 }
 
 export const getProductById = async (productId) => {
+
   const productDocRef = doc(productsCollectionRef, productId);
   const productSnapshot = await getDoc(productDocRef);
 
@@ -41,4 +42,3 @@ export const addProduct = async (product: any) => {
     }
     
 }
-

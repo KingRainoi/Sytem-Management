@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, deleteDoc, doc } from "firebase/firestore";
 import {db} from '../firebase.ts';
 import { getProducts } from '../resources/info/FirebaseProducts.ts';
-import { Tab } from 'react-bootstrap';
 import { confirmAlert } from 'react-confirm-alert';
 
 

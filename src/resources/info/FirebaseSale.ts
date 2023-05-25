@@ -5,8 +5,14 @@ import {Service} from './FirebaseServices.ts';
 
 const salesCollectionRef = collection(db, "sales");
 
+export interface itemsModel {
+    id:string,
+    name:string,
+    sale_price:number,
+}
+
 export interface Sale {
-  items: string[];
+  items: itemsModel[];
   date: Date;
   total: number;
 }

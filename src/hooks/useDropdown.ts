@@ -8,18 +8,25 @@ const useDropdown = (
 ) => {
     const [state, setState] = useState(initialState);
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLElement>,id?:number) => {
         try {
-            console.log(items);
-            const selectedProduct = items.find(item => item.id === e.target.value);
-            console.log("Soy lo seleccionado"+selectedProduct);
-            if (selectedProduct) {
-                handleItemSelect(selectedProduct, setState);
-            }    
+            const target = e.target as HTMLInputElement | HTMLSelectElement;
+            if (target instanceof HTMLInputElement) {
+                const newQuantity = Number(target.value);
+                setState(prevState=>({...prevState,items:prevState.items.map(item=>{
+                    if(item.id===id){
+                        return {...item,quantity:newQuantity};
+                    }
+                    return item;
+                })}))
+            } else if (target instanceof HTMLSelectElement) {
+                 const selectedProduct = items.find(item => item.id === target.value);
+                if (selectedProduct) {
+                    handleItemSelect(selectedProduct, setState);
+                }   
+            }  
         }
-        catch (error) {
-            console.log(error);
-            console.log("Error in useDropdown.ts");   
+        catch (error) { 
         }
     }
 

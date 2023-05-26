@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function ItemsList() {
     
   const {data: {items}, handleChange} = useContext<SaleContextData>(SaleContext);
-
+  
   return(
         <div>
           <TableContainer component={Paper}>
@@ -59,7 +59,7 @@ function ItemsList() {
                       }}
                       variant="filled"
                       value={item.quantity}
-                      
+                      onChange={(e) => handleChange(e,item.id)}
                     />
                   </StyledTableCell>
                   <StyledTableCell align="right">${item.sale_price}</StyledTableCell>

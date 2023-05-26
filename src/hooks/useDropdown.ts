@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { itemsModel } from "../resources/info/FirebaseSale.ts";
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
-import { Product } from "../resources/info/FirebaseProducts.ts";
 
 const useDropdown = (
     initialState: any,

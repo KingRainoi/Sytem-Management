@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 const useForm = (initialState: any) => {
     const [state, setState] = useState(initialState);

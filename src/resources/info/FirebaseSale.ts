@@ -9,9 +9,8 @@ export interface itemsModel {
     id:string,
     name:string,
     sale_price:number,
-}
-export interface itemsSale {
-    
+    quantity:number,
+    total:number,
 }
 
 export interface Sale {

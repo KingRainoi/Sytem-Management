@@ -25,7 +25,9 @@ function AddSale() {
         const newItem: itemsModel = {
             id: product.id,
             name,
-            sale_price: purchase_price
+            sale_price: purchase_price,
+            quantity: 1,
+            total: purchase_price,
         };
         setState(prevData => ({
             ...prevData,

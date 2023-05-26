@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SaleContext, SaleContextData } from "../hooks/saleContext.ts";
-import { ListItem, ListItemButton, ListItemText } from "@mui/material";
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
-import { Product } from "../resources/info/FirebaseProducts.ts";
+import { ListItem, ListItemButton, ListItemText, TextField } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -39,41 +37,37 @@ function ItemsList() {
   return(
         <div>
           <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Items</StyledTableCell>
-            <StyledTableCell align="right">Stock</StyledTableCell>
-            <StyledTableCell align="right">Price(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {items.map((item) => (
-            <StyledTableRow key={item.name}>
-              <StyledTableCell component="th" scope="row">
-                {item.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{item.name}</StyledTableCell>
-              <StyledTableCell align="right">0</StyledTableCell>
-              <StyledTableCell align="right">{item.sale_price}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-            <ListItem component="div" disablePadding>
-                <ListItemButton>
-                    {
-                    items.map((item)=> {
-                        return(
-                            <ListItemText primary={`${item}`} />
-                        )
-                    })
-                    }
-                </ListItemButton>
-            </ListItem>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Producto o Servicio</StyledTableCell>
+                <StyledTableCell align="right">Quantity</StyledTableCell>
+                <StyledTableCell align="right">Price</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {items.map((item) => (
+                <StyledTableRow key={item.id}>
+                  <StyledTableCell component="th" scope="row">{item.name}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    <TextField
+                      id="filled-number"
+                      label="Number"
+                      type="number"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                      value={item.quantity}
+                      
+                    />
+                  </StyledTableCell>
+                  <StyledTableCell align="right">${item.sale_price}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+          </TableContainer>
         </div>
     );
 }

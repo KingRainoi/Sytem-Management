@@ -10,6 +10,9 @@ export interface itemsModel {
     name:string,
     sale_price:number,
 }
+export interface itemsSale {
+    
+}
 
 export interface Sale {
   items: itemsModel[];

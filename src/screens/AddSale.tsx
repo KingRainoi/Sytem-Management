@@ -1,5 +1,5 @@
 import React,  { useState,Fragment, useEffect }  from 'react';
-import {Sale, itemsModel} from '../resources/info/FirebaseSale.ts';
+import {Sale, getItemFromFirebase, itemsModel} from '../resources/info/FirebaseSale.ts';
 import useDropdown from '../hooks/useDropdown.ts';
 import { Alert, Button, TextField } from '@mui/material';
 import {db} from '../firebase.ts';
@@ -54,9 +54,31 @@ function AddSale() {
     const {items,date} = data;
 
     const save = async () => {
-        const result = await addSale(data);    
-        result ? setSuccess("Sale registered") : setError("Error registering new sale");
-    }
+        // Verificar stock
+        let stockAvailable = true;
+        for (const item of data.items) {
+            const itemDoc = await getItemFromFirebase(item.id); // Reemplaza 'getItemFromFirebase' con tu método para obtener el documento del elemento desde Firebase
+            const stock = itemDoc.data()?.stock;
+            if (stock < item.quantity) {
+            stockAvailable = false;
+            break;
+            }
+        }
+
+        // Guardar registro de venta
+        if (stockAvailable) {
+            const saleData: Sale = {
+            items: data.items,
+            date: new Date(),
+            total: data.total,
+            };
+            const result = await addSale(saleData);    
+            result ? setSuccess("Sale registered") : setError("Error registering new sale");
+        } else {
+            setError("Insufficient stock for one or more items");
+        }
+    };
+
 
     const contextData : SaleContextData = {
         data,

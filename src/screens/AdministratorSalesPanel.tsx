@@ -5,7 +5,7 @@ import { Container, Divider, Grid, Paper, Table, TableBody, TableCell, TableCont
 import { NavLink } from "react-router-dom";
 import { DocumentData, QueryDocumentSnapshot, QuerySnapshot, deleteDoc, doc } from "firebase/firestore";
 import {db} from '../firebase.ts';
-import { getSales } from '../resources/info/FirebaseSale.ts';
+import { getSales, itemsModel } from '../resources/info/FirebaseSale.ts';
 import { confirmAlert } from 'react-confirm-alert';
 
 const deleteSale = async (id: string) => {
@@ -34,10 +34,14 @@ function AdministratorSalesPanel() {
     const fbSales = await getSales();
     setSales(fbSales);
   }
+  console.log("Soy ventas");
+  console.log(sales);
 
   useEffect(() => {
     getSalesData();
   },[])
+
+  
 
     return (
       <Container>
@@ -70,32 +74,8 @@ function AdministratorSalesPanel() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {
-                      sales.map((sale: QueryDocumentSnapshot<DocumentData>) => {
+                    
 
-                        const { items, date,total } = sale.data();
-                        const { id } = sale;
-                        return (
-                          <TableRow
-                            key={id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                          >
-                          <TableCell>{id}</TableCell>
-                          <TableCell align="right"> {items}</TableCell>
-                          <TableCell align="right">{date}</TableCell>
-                          <TableCell align="right">{total}</TableCell>
-                          <TableCell >
-                            <NavLink 
-                              to={`/UsersDetailsScreen/${id}`} 
-                              className="btn btn-info mx-2"
-                            >Edit</NavLink>
-                          </TableCell>
-                          <TableCell>
-                            <Button color="error" variant="contained" onClick={() => deleteSale(id)}>Delete</Button>
-                          </TableCell>
-                        </TableRow>);
-                      })
-                    }
                   </TableBody>
                 </Table>
               </TableContainer>

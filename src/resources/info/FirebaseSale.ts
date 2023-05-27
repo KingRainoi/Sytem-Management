@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.ts";
 import {Product} from './FirebaseProducts.ts';
 import {Service} from './FirebaseServices.ts';
@@ -29,12 +29,34 @@ export const addSale = async (sale: Sale) => {
     }
 }
 
+export const getItemFromFirebase = async (itemId) => {
+  try {
+    const collections = ['products', 'services'];
+
+    for (const collectionName of collections) {
+      const collectionRef = collection(db, collectionName);
+      const itemDoc = await getDoc(doc(collectionRef, itemId));
+
+      if (itemDoc.exists()) {
+        // El elemento fue encontrado en esta tabla, puedes retornar el documento
+        return itemDoc;
+      }
+    }
+
+    // El elemento no fue encontrado en ninguna tabla
+    return null;
+  } catch (error) {
+    console.error('Error searching item in Firebase:', error);
+    throw error;
+  }
+};
+
+
 export const getSales = async () => {
     try {
         const salesSnapshot = await getDocs(salesCollectionRef);
         const sales = salesSnapshot.docs.map((doc) => doc.data());
         return sales;
-        // return salesSnapshot;
     }
     catch (error) {
         console.log(error);

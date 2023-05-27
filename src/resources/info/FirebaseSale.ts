@@ -51,7 +51,6 @@ export const getItemFromFirebase = async (itemId) => {
   }
 };
 
-
 export const getSales = async () => {
     try {
         const salesSnapshot = await getDocs(salesCollectionRef);

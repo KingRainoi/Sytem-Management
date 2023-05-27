@@ -23,12 +23,13 @@ function AddSale() {
         console.log(product);
         const { name, purchase_price } = product.data();
         const newItem: itemsModel = {
-            id: product.id,
-            name,
-            sale_price: purchase_price,
-            quantity: 1,
-            total: purchase_price,
+        id: product.id,
+        name,
+        sale_price: purchase_price,
+        quantity: 1,
+        total: parseFloat(purchase_price), // Asegura que el valor sea un número
         };
+
         setState(prevData => ({
             ...prevData,
             items: [...prevData.items, newItem]
@@ -45,11 +46,12 @@ function AddSale() {
       getProductsData();
     },[]);
 
-    const [data, handleChange] = useDropdown(saleInitialState, products, handleProductSelect);
+    const [data, handleChange, total] = useDropdown(saleInitialState, products, handleProductSelect);
+
     const [error,setError] = useState('');
     const [success,setSuccess] = useState('');
 
-    const {items,date,total} = data;
+    const {items,date} = data;
 
     const save = async () => {
         const result = await addSale(data);    

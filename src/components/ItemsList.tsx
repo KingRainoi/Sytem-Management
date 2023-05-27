@@ -59,10 +59,17 @@ function ItemsList() {
                       }}
                       variant="filled"
                       value={item.quantity}
-                      onChange={(e) => handleChange(e,item.id)}
+                      onChange={(e) => {
+                        const newQuantity = Number(e.target.value);
+                        handleChange(e, item.id);
+                        const newTotal = items.reduce((sum, currentItem) => sum + parseFloat(currentItem.total), 0);
+                        handleChange({ target: { value: newTotal } }, undefined); // Actualiza el valor total en el estado global
+}}
+
+
                     />
                   </StyledTableCell>
-                  <StyledTableCell align="right">${item.sale_price}</StyledTableCell>
+                  <StyledTableCell align="right">${item.total}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

@@ -64,9 +64,7 @@ function ItemsList() {
                         handleChange(e, item.id);
                         const newTotal = items.reduce((sum, currentItem) => sum + parseFloat(currentItem.total), 0);
                         handleChange({ target: { value: newTotal } }, undefined); // Actualiza el valor total en el estado global
-}}
-
-
+                      }}
                     />
                   </StyledTableCell>
                   <StyledTableCell align="right">${item.total}</StyledTableCell>

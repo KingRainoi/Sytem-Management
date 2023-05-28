@@ -52,13 +52,13 @@ export const getItemFromFirebase = async (itemId) => {
 };
 
 export const getSales = async () => {
-    try {
-        const salesSnapshot = await getDocs(salesCollectionRef);
-        const sales = salesSnapshot.docs.map((doc) => doc.data());
-        return sales;
-    }
-    catch (error) {
-        console.log(error);
-        return error;
-    }
-}
+  try {
+    const salesSnapshot = await getDocs(salesCollectionRef);
+    const sales = salesSnapshot.docs; // Obtener los documentos del snapshot
+    return sales;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+

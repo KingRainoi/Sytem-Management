@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Text, Avatar, Dropdown } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
 import Logo from '../resources/img/Logo';
-import { NavLink, useLocation } from 'react-router-dom';
+import useProfileSelector from '../hooks/useProfileSelector.ts';
 
 function isActiveRoute(route, location) {
   return location.pathname === route;
@@ -25,6 +25,7 @@ function NavBar() {
         "Help & Feedback",
         "Log Out",
       ];
+  const [key, handleChange] = useProfileSelector("");
 
   return (
         <Navbar isBordered variant="sticky">
@@ -73,35 +74,35 @@ function NavBar() {
                         />
                     </Dropdown.Trigger>
                 </Navbar.Item>
-                <Dropdown.Menu
-                aria-label="User menu actions"
-                color="secondary"
-                onAction={(actionKey) => console.log({ actionKey })}
+               <Dropdown.Menu
+                  aria-label="User menu actions"
+                  color="secondary"
+                  onAction={handleChange}
                 >
-                <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                <Text b color="inherit" css={{ d: "flex" }}>
-                  Signed in as
-                </Text>
-                <Text b color="inherit" css={{ d: "flex" }}>
-                  zoey@example.com
-                </Text>
-              </Dropdown.Item>
-              <Dropdown.Item key="settings" withDivider>
-                My Settings
-              </Dropdown.Item>
-              <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-              <Dropdown.Item key="analytics" withDivider>
-                Analytics
-              </Dropdown.Item>
-              <Dropdown.Item key="system">System</Dropdown.Item>
-              <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-              <Dropdown.Item key="help_and_feedback" withDivider>
-                Help & Feedback
-              </Dropdown.Item>
-              <Dropdown.Item key="logout" withDivider color="error">
-                Log Out
-              </Dropdown.Item>
-                </Dropdown.Menu>
+                  <Dropdown.Item key="profile" css={{ height: "$18" }}>
+                  <Text b color="inherit" css={{ d: "flex" }}>
+                    Signed in as
+                  </Text>
+                  <Text b color="inherit" css={{ d: "flex" }}>
+                    zoey@example.com
+                  </Text>
+                </Dropdown.Item>
+                <Dropdown.Item key="settings" withDivider>
+                  My Settings
+                </Dropdown.Item>
+                <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
+                <Dropdown.Item key="analytics" withDivider>
+                  Analytics
+                </Dropdown.Item>
+                <Dropdown.Item key="system">System</Dropdown.Item>
+                <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
+                <Dropdown.Item key="help_and_feedback" withDivider>
+                  Help & Feedback
+                </Dropdown.Item>
+                <Dropdown.Item key="logout" withDivider color="error">
+                  Log Out
+                </Dropdown.Item>
+              </Dropdown.Menu>
             </Dropdown>
           </Navbar.Content>
         </Navbar>

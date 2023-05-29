@@ -35,8 +35,6 @@ function AdministratorSalesPanel() {
     const fbSales = await getSales();
     setSales(fbSales);
   }
-  console.log("Soy ventas");
-  console.log(sales);
 
   useEffect(() => {
     getSalesData();

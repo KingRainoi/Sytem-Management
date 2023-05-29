@@ -5,7 +5,6 @@ import { getAnalytics } from "firebase/analytics";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {getAuth} from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
-import {firebase} from '@firebase/app';
 
 
 // Your web app's Firebase configuration
